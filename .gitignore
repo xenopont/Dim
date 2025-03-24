@@ -1,5 +1,9 @@
+# Rider default
 bin/
 obj/
 /packages/
 riderModule.iml
 /_ReSharper.Caches/
+
+# Custom
+.idea
