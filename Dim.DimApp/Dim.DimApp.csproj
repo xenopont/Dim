@@ -9,11 +9,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <Page Update="MainWindow\MainWindow.xaml">
-        <Generator>MSBuild:Compile</Generator>
-        <XamlRuntime>Wpf</XamlRuntime>
-        <SubType>Designer</SubType>
-      </Page>
+        <ProjectReference Include="..\Dim.Localization\Dim.Localization.csproj"/>
     </ItemGroup>
 
 </Project>
