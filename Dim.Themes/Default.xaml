@@ -1,4 +1,44 @@
 <ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-    <SolidColorBrush x:Key="MySolidColorBrush" Color="#FFC0C080" />
+    <SolidColorBrush x:Key="OverlappedWindowBackgroundBrush" Color="#FFd4d0c7" />
+    <CornerRadius x:Key="OverlappedWindowCornerRadius">0</CornerRadius>
+    <Thickness x:Key="ShadowMargin">0,0,8,8</Thickness>
+
+    <ControlTemplate TargetType="Window" x:Key="OverlappedWindowControlTemplate">
+        <ContentControl>
+            <Grid>
+                <!-- Shadow Markup -->
+                <Border Background="#44000000" Margin="4">
+                    <Border.Effect>
+                        <BlurEffect Radius="4" KernelType="Gaussian" RenderingBias="Quality" />
+                    </Border.Effect>
+                </Border>
+                <!-- Window Background and Border -->
+                <Border Margin="{DynamicResource ShadowMargin}"
+                        Background="{DynamicResource OverlappedWindowBackgroundBrush}">
+                    <Border BorderBrush="#88FFFFFF" BorderThickness="1,1,0,0">
+                        <Border BorderBrush="#88000000" BorderThickness="0,0,1,1">
+                            <Border BorderBrush="#FFFFFFFF" BorderThickness="1,1,0,0">
+                                <Border BorderBrush="#FF000000" BorderThickness="0,0,1,1">
+                                    <Border BorderBrush="#44FFFFFF" BorderThickness="1,1,0,0">
+                                        <Border BorderBrush="#44000000" BorderThickness="0,0,1,1" />
+                                    </Border>
+                                </Border>
+                            </Border>
+                        </Border>
+                    </Border>
+                </Border>
+                <!-- Content Container -->
+                <Border Margin="{DynamicResource ShadowMargin}" Padding="4">
+                    <ContentPresenter />
+                </Border>
+            </Grid>
+        </ContentControl>
+    </ControlTemplate>
+
+    <Style x:Key="OverlappedWindowStyle" TargetType="Window">
+        <Style.Setters>
+            <Setter Property="Template" Value="{DynamicResource OverlappedWindowControlTemplate}" />
+        </Style.Setters>
+    </Style>
 </ResourceDictionary>

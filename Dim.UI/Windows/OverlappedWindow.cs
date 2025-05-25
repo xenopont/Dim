@@ -5,9 +5,16 @@ namespace Dim.UI.Windows;
 
 public class OverlappedWindow : Window
 {
+    protected OverlappedWindow()
+    {
+        WindowStyle = WindowStyle.None;
+        AllowsTransparency = true;
+        Background = new SolidColorBrush(Colors.Transparent);
+    }
+
     private void ApplyStyles()
     {
-        if (Application.Current.TryFindResource("MySolidColorBrush") is SolidColorBrush brush) Background = brush;
+        Style = Application.Current.FindResource("OverlappedWindowStyle") as Style;
     }
 
     public override void OnApplyTemplate()
