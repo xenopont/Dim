@@ -10,6 +10,7 @@
 
     <ItemGroup>
         <ProjectReference Include="..\Dim.Localization\Dim.Localization.csproj"/>
+        <ProjectReference Include="..\Dim.UI\Dim.UI.csproj"/>
     </ItemGroup>
 
 </Project>
