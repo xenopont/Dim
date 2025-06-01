@@ -11,12 +11,29 @@
         </LinearGradientBrush.GradientStops>
     </LinearGradientBrush>
     <Thickness x:Key="ShadowMargin">0,0,8,8</Thickness>
+    <SolidColorBrush x:Key="ControlLightBorder1" Color="#FFFFFFFF" />
+    <SolidColorBrush x:Key="ControlDarkBorder1" Color="#CC000000" />
+    <SolidColorBrush x:Key="ControlDarkBorder2" Color="#88000000" />
+    <!-- Window Title Button Template -->
     <ControlTemplate TargetType="Button" x:Key="OverlappedWindowTitleButton">
         <ContentControl FontSize="9" FontWeight="Bold" FlowDirection="LeftToRight">
+            <VisualStateManager.VisualStateGroups>
+                <VisualStateGroup x:Name="CommonStates">
+                    <VisualState x:Name="Normal" />
+                    <VisualState x:Name="Pressed">
+                        <Storyboard>
+                            <ColorAnimation Storyboard.TargetName="OuterBorder"
+                                            Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)"
+                                            To="#CC000000" Duration="0:0:0.05" />
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState x:Name="MouseOver" />
+                </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
             <Border Background="{DynamicResource OverlappedWindowBackgroundBrush}" Width="21" Height="20">
-                <Border BorderBrush="#FFFFFFFF" BorderThickness="1,1,0,0">
-                    <Border BorderBrush="#CC000000" BorderThickness="0,0,1,1">
-                        <Border BorderBrush="#88000000" BorderThickness="0,0,1,1" Padding="1">
+                <Border x:Name="OuterBorder" BorderBrush="{StaticResource ControlLightBorder1}" BorderThickness="1,1,0,0">
+                    <Border BorderBrush="{StaticResource ControlDarkBorder1}" BorderThickness="0,0,1,1">
+                        <Border BorderBrush="{StaticResource ControlDarkBorder2}" BorderThickness="0,0,1,1">
                             <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
                         </Border>
                     </Border>
@@ -28,7 +45,7 @@
     <ControlTemplate TargetType="Window" x:Key="OverlappedWindowControlTemplate">
         <ContentControl>
             <Grid>
-                <!-- Shadow Markup -->
+                <!-- Shadow -->
                 <Border Background="#44000000" Margin="4">
                     <Border.Effect>
                         <BlurEffect Radius="4" KernelType="Gaussian" RenderingBias="Quality" />
