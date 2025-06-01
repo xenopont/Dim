@@ -13,13 +13,11 @@
     <Thickness x:Key="ShadowMargin">0,0,8,8</Thickness>
     <ControlTemplate TargetType="Button" x:Key="OverlappedWindowTitleButton">
         <ContentControl FontSize="9" FontWeight="Bold" FlowDirection="LeftToRight">
-            <Border Background="{DynamicResource OverlappedWindowBackgroundBrush}" Width="18" Height="18">
+            <Border Background="{DynamicResource OverlappedWindowBackgroundBrush}" Width="21" Height="20">
                 <Border BorderBrush="#FFFFFFFF" BorderThickness="1,1,0,0">
                     <Border BorderBrush="#CC000000" BorderThickness="0,0,1,1">
-                        <Border BorderBrush="#CCFFFFFF" BorderThickness="1,1,0,0">
-                            <Border BorderBrush="#88000000" BorderThickness="0,0,1,1" Padding="1">
-                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
-                            </Border>
+                        <Border BorderBrush="#88000000" BorderThickness="0,0,1,1" Padding="1">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
                         </Border>
                     </Border>
                 </Border>
@@ -82,7 +80,7 @@
                             HorizontalAlignment="Left" />
                 </Grid>
                 <!-- Content Container -->
-                <Border Margin="{DynamicResource ShadowMargin}" Padding="4">
+                <Border Margin="4,26,12,4" Padding="4">
                     <ContentPresenter />
                 </Border>
             </Grid>
