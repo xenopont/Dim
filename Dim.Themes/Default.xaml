@@ -40,7 +40,7 @@
                 <Border Margin="{DynamicResource ShadowMargin}"
                         Background="{DynamicResource OverlappedWindowBackgroundBrush}">
                     <Border BorderBrush="#88FFFFFF" BorderThickness="1,1,0,0">
-                        <Border BorderBrush="#88000000" BorderThickness="0,0,1,1">
+                        <Border BorderBrush="#CC000000" BorderThickness="0,0,1,1">
                             <Border BorderBrush="#FFFFFFFF" BorderThickness="1,1,0,0">
                                 <Border BorderBrush="#FF000000" BorderThickness="0,0,1,1">
                                     <Border BorderBrush="#44FFFFFF" BorderThickness="1,1,0,0">
@@ -52,25 +52,35 @@
                     </Border>
                 </Border>
                 <!-- Window Title -->
-                <StackPanel Height="{DynamicResource OverlappedWindowTitleHeight}"
-                            Margin="4,4,12,12"
-                            Background="{DynamicResource OverlappedWindowTitleBrush}"
-                            VerticalAlignment="Top"
-                            Orientation="Horizontal"
-                            FlowDirection="RightToLeft">
-                    <FrameworkElement Width="2" Visibility="Hidden" />
-                    <Button Content="✕" Template="{StaticResource OverlappedWindowTitleButton}"
+                <Grid Height="{DynamicResource OverlappedWindowTitleHeight}"
+                      Margin="4,4,12,12"
+                      Background="{DynamicResource OverlappedWindowTitleBrush}"
+                      VerticalAlignment="Top">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="16" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="2" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="2" />
+                    </Grid.ColumnDefinitions>
+                    <ContentPresenter Content="{TemplateBinding Icon}"
+                                      Width="16" Height="16"
+                                      Grid.Column="0" Margin="0,0,5,0" />
+                    <TextBlock Text="{TemplateBinding Title}" Grid.Column="1"
+                               VerticalAlignment="Center" FontWeight="Bold"
+                               Foreground="White" />
+                    <Button Content="🗕" Grid.Column="3" Template="{StaticResource OverlappedWindowTitleButton}"
                             HorizontalAlignment="Left" />
-                    <FrameworkElement Width="2" Visibility="Hidden" />
-                    <Button Content="☐" Template="{StaticResource OverlappedWindowTitleButton}"
+                    <Button Content="☐" Grid.Column="4" Template="{StaticResource OverlappedWindowTitleButton}"
                             HorizontalAlignment="Left" />
-                    <Button Content="🗗" Template="{StaticResource OverlappedWindowTitleButton}"
+                    <Button Content="🗗" Grid.Column="4" Template="{StaticResource OverlappedWindowTitleButton}"
                             HorizontalAlignment="Left" Visibility="Collapsed" />
-                    <Button Content="🗕" Template="{StaticResource OverlappedWindowTitleButton}"
+                    <Button Content="✕" Grid.Column="6" Template="{StaticResource OverlappedWindowTitleButton}"
                             HorizontalAlignment="Left" />
-                    <ContentPresenter Content="{TemplateBinding Icon}" Width="16" Height="16" Margin="0,0,5,0" />
-                    <TextBlock Text="{TemplateBinding Title}" VerticalAlignment="Center" FontWeight="Bold" />
-                </StackPanel>
+                </Grid>
                 <!-- Content Container -->
                 <Border Margin="{DynamicResource ShadowMargin}" Padding="4">
                     <ContentPresenter />
