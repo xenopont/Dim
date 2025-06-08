@@ -11,9 +11,6 @@
         </LinearGradientBrush.GradientStops>
     </LinearGradientBrush>
     <Thickness x:Key="ShadowMargin">0,0,8,8</Thickness>
-    <SolidColorBrush x:Key="ControlLightBorder1" Color="#FFFFFFFF" />
-    <SolidColorBrush x:Key="ControlDarkBorder1" Color="#CC000000" />
-    <SolidColorBrush x:Key="ControlDarkBorder2" Color="#88000000" />
     <!-- Window Title Button Template -->
     <ControlTemplate TargetType="Button" x:Key="OverlappedWindowTitleButton">
         <ContentControl FontSize="9" FontWeight="Bold" FlowDirection="LeftToRight">
@@ -24,21 +21,27 @@
                         <Storyboard>
                             <ColorAnimation Storyboard.TargetName="OuterBorder"
                                             Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)"
-                                            To="#CC000000" Duration="0:0:0.05" />
+                                            To="#44000000" Duration="0:0:0.05" />
+                            <ThicknessAnimation Storyboard.TargetName="ContentBorder"
+                                                Storyboard.TargetProperty="(Border.Margin)"
+                                                To="5,5,4,4" Duration="0:0:0.05" />
                         </Storyboard>
                     </VisualState>
                     <VisualState x:Name="MouseOver" />
                 </VisualStateGroup>
             </VisualStateManager.VisualStateGroups>
-            <Border Background="{DynamicResource OverlappedWindowBackgroundBrush}" Width="21" Height="20">
-                <Border x:Name="OuterBorder" BorderBrush="{StaticResource ControlLightBorder1}" BorderThickness="1,1,0,0">
-                    <Border BorderBrush="{StaticResource ControlDarkBorder1}" BorderThickness="0,0,1,1">
-                        <Border BorderBrush="{StaticResource ControlDarkBorder2}" BorderThickness="0,0,1,1">
-                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
-                        </Border>
+            <Grid Background="{DynamicResource OverlappedWindowBackgroundBrush}"
+                  Width="21"
+                  Height="20">
+                <Border x:Name="OuterBorder" BorderBrush="#FFFFFFFF" BorderThickness="1,1,0,0">
+                    <Border BorderBrush="#CC000000" BorderThickness="0,0,1,1">
+                        <Border BorderBrush="#88000000" BorderThickness="0,0,1,1" />
                     </Border>
                 </Border>
-            </Border>
+                <Border x:Name="ContentBorder" Margin="4,4,5,5">
+                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                </Border>
+            </Grid>
         </ContentControl>
     </ControlTemplate>
 
@@ -83,18 +86,51 @@
                     </Grid.ColumnDefinitions>
                     <ContentPresenter Content="{TemplateBinding Icon}"
                                       Width="16" Height="16"
-                                      Grid.Column="0" Margin="0,0,5,0" />
+                                      Grid.Column="0" />
                     <TextBlock Text="{TemplateBinding Title}" Grid.Column="1"
                                VerticalAlignment="Center" FontWeight="Bold"
-                               Foreground="White" />
-                    <Button Content="🗕" Grid.Column="3" Template="{StaticResource OverlappedWindowTitleButton}"
-                            HorizontalAlignment="Left" />
-                    <Button Content="☐" Grid.Column="4" Template="{StaticResource OverlappedWindowTitleButton}"
-                            HorizontalAlignment="Left" />
-                    <Button Content="🗗" Grid.Column="4" Template="{StaticResource OverlappedWindowTitleButton}"
-                            HorizontalAlignment="Left" Visibility="Collapsed" />
-                    <Button Content="✕" Grid.Column="6" Template="{StaticResource OverlappedWindowTitleButton}"
-                            HorizontalAlignment="Left" />
+                               Foreground="#FFFFFFFF" />
+                    <!-- Minimize Button -->
+                    <Button Grid.Column="3" Template="{StaticResource OverlappedWindowTitleButton}"
+                            HorizontalAlignment="Left">
+                        <Viewbox Stretch="Fill">
+                            <Canvas Width="10" Height="10">
+                                <Path Stroke="#FF000000"
+                                      StrokeThickness="2"
+                                      Data="M0,9 L9,9" />
+                            </Canvas>
+                        </Viewbox>
+                    </Button>
+                    <!-- Maximize Button -->
+                    <Button Grid.Column="4"
+                            Template="{StaticResource OverlappedWindowTitleButton}"
+                            HorizontalAlignment="Left"
+                            Visibility="Collapsed">
+                        <Viewbox Stretch="Fill">
+                            <Canvas Width="10" Height="10">
+                                <Path Stroke="#FF000000"
+                                      StrokeThickness="1"
+                                      Data="M10,0 L0,0 L0,10 L10,10 Z M0,1 L 10,1" />
+                            </Canvas>
+                        </Viewbox>
+                    </Button>
+                    <!-- Restore Button -->
+                    <Button Content="🗗" Grid.Column="4"
+                            Template="{StaticResource OverlappedWindowTitleButton}"
+                            HorizontalAlignment="Left"
+                            Visibility="Visible" />
+                    <!-- Close Button -->
+                    <Button Grid.Column="6"
+                            Template="{StaticResource OverlappedWindowTitleButton}"
+                            HorizontalAlignment="Left">
+                        <Viewbox Stretch="Fill">
+                            <Canvas Width="16" Height="16">
+                                <Path Stroke="#FF000000"
+                                      StrokeThickness="1"
+                                      Data="M0,0 L16,16 M16,0 L0,16" />
+                            </Canvas>
+                        </Viewbox>
+                    </Button>
                 </Grid>
                 <!-- Content Container -->
                 <Border Margin="4,26,12,4" Padding="4">
