@@ -91,7 +91,8 @@
                                VerticalAlignment="Center" FontWeight="Bold"
                                Foreground="#FFFFFFFF" />
                     <!-- Minimize Button -->
-                    <Button Grid.Column="3" Template="{StaticResource OverlappedWindowTitleButton}"
+                    <Button Grid.Column="3" x:Name="CHROME_MinimizeButton"
+                            Template="{StaticResource OverlappedWindowTitleButton}"
                             HorizontalAlignment="Left">
                         <Viewbox Stretch="Fill">
                             <Canvas Width="10" Height="10">
@@ -128,7 +129,7 @@
                         </Viewbox>
                     </Button>
                     <!-- Close Button -->
-                    <Button Grid.Column="6"
+                    <Button Grid.Column="6" x:Name="CHROME_CloseButton"
                             Template="{StaticResource OverlappedWindowTitleButton}"
                             HorizontalAlignment="Left">
                         <Viewbox Stretch="Fill">
